@@ -1,0 +1,16 @@
+# Development stage with hot reload
+FROM oven/bun:1-alpine AS development
+
+WORKDIR /app
+
+ENV NODE_ENV=development
+
+COPY package.json bun.lock ./
+
+RUN bun install
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["bun", "run", "start:dev"]
